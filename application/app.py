@@ -1,7 +1,7 @@
+from application.api import hamta_vader
+from application.charts import skapa_diagram
+from application.analysis import bearbeta_manader, sammanfatta
 from flask import Flask, render_template
-from api import hamta_vader
-from charts import skapa_diagram
-from analysis import bearbeta_manader, sammanfatta
 import requests
 
  
