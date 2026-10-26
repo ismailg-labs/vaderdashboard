@@ -45,6 +45,21 @@ def test_sammanfatta():
     assert resultat["kallast"] == 12
     assert resultat["blotast"] == 12
 
+def test_api_httpfel():
+    with patch("application.api.requests.get") as mock_get:
+        mock_response = Mock()
+        mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError
+        mock_get.return_value = mock_response
 
-    
+        with pytest.raises(requests.exceptions.HTTPError):
+            hamta_vader()
 
+
+def test_api_tomt_svar():
+    with patch("application.api.requests.get") as mock_get:
+        mock_response = Mock()
+        mock_response.json.return_value = {"daily": {"time": []}}
+        mock_get.return_value = mock_response
+
+        with pytest.raises(ValueError):
+            hamta_vader()
