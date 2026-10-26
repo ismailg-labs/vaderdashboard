@@ -23,7 +23,7 @@ def dashboard():
         slutsats1, slutsats2, slutsats3 = sammanfatta(manader)
         temperatur_html, nederbord_html = skapa_diagram(manader)
     except (requests.exceptions.RequestException, ValueError): 
-        return render_template("dashboard.html", error="Väderdata kunde inte hämtas."),
+        return render_template("dashboard.html", error="Väderdata kunde inte hämtas."), 503
 
     
     return render_template(

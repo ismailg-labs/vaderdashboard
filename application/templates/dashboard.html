@@ -5,6 +5,20 @@
 {% block content %}
     <h1>Väderstatistik för Stockholm 2025</h1>
 
-    <!-- Här ska diagrammen och slutsatserna visas senare -->
+    {% if error %} 
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %} 
+        <h2> Slutsatser </h2>
+        <ul>
+            <li> {{ slutsats1 }} </li>
+            <li> {{ slutsats2 }} </li>
+            <li> {{ slutsats3 }} </li>
+        </ul>
 
+        <h2> Temperatur </h2>
+        {{ temperatur_html | safe }}
+
+        <h2> Nederbörd </h2>
+        {{ nederbord_html | safe }}
+    {% endif %}
 {% endblock %}
