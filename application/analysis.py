@@ -21,6 +21,20 @@ def bearbeta_manader(data):
 
     return manad
 
+def sammanfatta (manader):
+    varmast = manader.loc[manader["medeltemp"].idxmax(), "month"]
+    kallast = manader.loc[manader["medeltemp"].idxmin(), "month"]
+    blotast = manader.loc[manader["nederbord"].idxmax(), "month"]
+
+    return {
+        "varmast": int(varmast),
+        "kallast": int(kallast),
+        "blotast": int(blotast)
+    }
+
+
+
+
 
 
     
