@@ -17,23 +17,24 @@ def about():
 
 @app.route("/dashboard")
 def dashboard():
-    data = hamta_vader()
-    manader = bearbeta_manader(data)
-    slutsats1, slutsats2, slutsats3 = sammanfatta(manader)
-    diagram_temp, diagram_nederbord = skapa_diagram(manader)
+    try:
+        data = hamta_vader()
+        manader = bearbeta_manader(data)
+        slutsats1, slutsats2, slutsats3 = sammanfatta(manader)
+        temperatur_html, nederbord_html = skapa_diagram(manader)
+    except (requests.exceptions.RequestException, ValueError): 
+        return render_template("dashboard.html", error="Väderdata kunde inte hämtas."),
 
+    
     return render_template(
-        "dashboard.html",
-        diagram_temp=diagram_temp,
-        diagram_nederbord=diagram_nederbord,
-        slutsats1=slutsats1,
-        slutsats2=slutsats2,
-        slutsats3=slutsats3,    
-    )
+            "dashboard.html",
+            temperatur_html=temperatur_html,
+            nederbord_html=nederbord_html,
+            slutsats1=slutsats1,
+            slutsats2=slutsats2,
+            slutsats3=slutsats3,    
+        )
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
