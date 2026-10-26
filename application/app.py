@@ -20,7 +20,10 @@ def dashboard():
     try:
         data = hamta_vader()
         manader = bearbeta_manader(data)
-        slutsats1, slutsats2, slutsats3 = sammanfatta(manader)
+        slutsatser = sammanfatta(manader)
+        slutsats1 = slutsatser["varmast"]
+        slutsats2 = slutsatser["kallast"]
+        slutsats3 = slutsatser["blotast"]
         temperatur_html, nederbord_html = skapa_diagram(manader)
     except (requests.exceptions.RequestException, ValueError): 
         return render_template("dashboard.html", error="Väderdata kunde inte hämtas."), 503
