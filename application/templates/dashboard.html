@@ -4,6 +4,7 @@
 
 {% block content %}
     <h1>Väderstatistik för Stockholm 2025</h1>
+    <p>Här visas Stockholms medeltemperatur och nederbörd under 2025, sammanställd per månad.</p>
 
     {% if error %} 
         <div class="alert alert-danger">{{ error }}</div>
@@ -21,4 +22,10 @@
         <h2> Nederbörd </h2>
         {{ nederbord_html | safe }}
     {% endif %}
+    <p>
+        Källa:
+        <a href="https://open-meteo.com/en/docs/historical-weather-api">
+            Open-Meteo Historical Weather API
+        </a>
+    </p>
 {% endblock %}
