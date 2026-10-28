@@ -8,7 +8,7 @@ from application.analysis import bearbeta_manader, sammanfatta
 from application.api import hamta_vader
 from application.app import app
 
-
+#Testet kontrollerar att hamta_vader skickar ett felmeddelande vid timeout.
 def test_api_timeout():
     with patch("application.api.requests.get") as mock_get:
         mock_get.side_effect = requests.exceptions.Timeout
@@ -16,7 +16,7 @@ def test_api_timeout():
         with pytest.raises(requests.exceptions.Timeout):
             hamta_vader()
 
-
+#Testet använder egen testdata med två dagar i januari och en dag i februari, där värdena är valda så att det förväntade resultatet kan räknas fram för hand.
 def test_bearbeta_manader():
 
     fake_data = {
@@ -37,7 +37,7 @@ def test_bearbeta_manader():
     assert resultat.iloc[1]["medeltemp"] == 10
     assert resultat.iloc[1]["nederbord"] == 5
 
-
+#Testet kollar om den hittar varmaste kallaste och blötaste månaden.
 def test_sammanfatta():
     manader = pd.DataFrame(
         {"month": [3, 6, 12], "medeltemp": [5, 18, -4], "nederbord": [40, 20, 90]}
