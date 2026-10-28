@@ -4,6 +4,7 @@ from application.api import hamta_vader
 from application.analysis import bearbeta_manader, sammanfatta
 import pytest
 import pandas as pd
+from application.app import app
 
 def test_api_timeout():
     with patch("application.api.requests.get") as mock_get:
@@ -63,3 +64,11 @@ def test_api_tomt_svar():
 
         with pytest.raises(ValueError):
             hamta_vader()
+
+def test_dashboard_timeout():
+    with patch("application.app.hamta_vader", side_effect=requests.exceptions.Timeout):
+        client = app.test_client()
+        response = client.get("/dashboard")
+
+    assert response.status_code == 503
+    assert "Väderdata kunde inte hämtas" in response.get_data(as_text=True)
