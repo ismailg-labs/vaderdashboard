@@ -1,101 +1,75 @@
+
 # Väderdashboard – Stockholm 2025
 
-**OBS:** Denna README är en tillfällig guide för att hjälpa gruppmedlemmarna att komma igång med projektet.
+Hej Dennis!
 
-Vi kommer att uppdatera och komplettera den under arbetets gång innan den slutliga inlämningen till Dennis.
+Detta är våran grupprojekt. Vi har byggt en Flask-app som visar historisk väderstatistik för Stockholm under förra året 2025 :)
 
-Grupparbete i Programmering 2.
+Vi hämtar data från Open-Meteo och analyserar den med Pandas och visar temperatur och nederbörd i två interaktiva Plotly-diagram.
 
-En Flask-app som hämtar historisk väderdata från Open-Meteo, analyserar den med Pandas och visar diagram med Plotly.
+Vår app besvarar tre frågor:
+- Vilken månad var varmast?
+- Vilken månad var kallast?
+- Vilken månad hade mest nederbörd?
 
-## Projektstruktur
+## Installation
 
-```text
-vaderdashboard/
-├── application/
-│   ├── __init__.py
-│   ├── app.py
-│   ├── api.py
-│   ├── analysis.py
-│   └── charts.py
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── dashboard.html
-│   └── about.html
-├── tests/
-│   └── test_project.py
-├── .gitignore
-├── requirements.txt
-├── requirements-dev.txt
-├── pyproject.toml
-└── README.md
-```
-
-### Vad gör filerna?
-
-| Fil/mapp | Funktion |
-|---|---|
-| `application/app.py` | Flask-appen och dess routes. |
-| `application/api.py` | Hämtar väderdata från API:et. |
-| `application/analysis.py` | Bearbetar data med Pandas. |
-| `application/charts.py` | Skapar diagram med Plotly. |
-| `application/__init__.py` | Gör `application` till ett Python-paket. |
-| `templates/` | HTML-sidor. `base.html` är gemensam mall. |
-| `tests/` | Automatiska tester med Pytest. |
-| `.gitignore` | Filer och mappar som Git ska ignorera. |
-| `requirements.txt` | Appens bibliotek. |
-| `requirements-dev.txt` | Test- och utvecklingsverktyg samt appens bibliotek. |
-| `pyproject.toml` | Konfiguration för Pytest. |
-| `README.md` | Projektinformation och installation. |
-
-## Kom igång
-
-### 1. Klona projektet
-
-Kopiera repo-adressen från GitHub och kör:
+Börja med att clone projektet och öppna projektmappen:
 
 ```bash
-git clone REPO-ADRESS
+git clone https://github.com/ismailg-labs/vaderdashboard.git
 cd vaderdashboard
-code .
 ```
 
-### 2. Skapa och aktivera venv
-
-**Windows – PowerShell**
+**Windows:**
 
 ```powershell
-py -m venv venv
+python -m venv venv
 .\venv\Scripts\Activate.ps1
 ```
 
-**Windows – Git Bash**
-
-```bash
-py -m venv venv
-source venv/Scripts/activate
-```
-
-**macOS**
+**Mac:**
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Installera alla beroenden
-
-Kör med aktiverad venv:
+Installera sedan beroenden:
 
 ```bash
 python -m pip install -r requirements-dev.txt
 ```
 
-Det installerar både appens bibliotek och utvecklingsverktygen.
+## Starta appen
 
-**Klart! Nu kan du börja arbeta i projektet.**
+```bash
+python -m flask --app application.app run
+```
 
-När du är färdig kan du avsluta miljön med `deactivate`.
+Öppna http://127.0.0.1:5000 i webbläsaren.
 
-Nästa gång behöver du bara aktivera din befintliga venv igen.
+## Tester och Ruff
+
+Kör testerna:
+
+```bash
+python -m pytest
+```
+
+Kontrollera kod och formatering:
+
+```bash
+python -m ruff check .
+python -m ruff format --check .
+```
+
+** För Mac:** Använd `python3` istället för `python` i kommandona.
+
+## API och källa
+
+Vi använder Open-Meteo Historical Weather API.
+
+Dokumentation: https://open-meteo.com/en/docs/historical-weather-api
+
+Datakälla: https://open-meteo.com/
