@@ -1,19 +1,22 @@
+import requests
+from flask import Flask, render_template
+
+from application.analysis import bearbeta_manader, sammanfatta
 from application.api import hamta_vader
 from application.charts import skapa_diagram
-from application.analysis import bearbeta_manader, sammanfatta
-from flask import Flask, render_template
-import requests
 
- 
-app = Flask (__name__,template_folder="templates")
+app = Flask(__name__, template_folder="templates")
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
 @app.route("/about")
 def about():
     return render_template("about.html")
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -25,18 +28,19 @@ def dashboard():
         slutsats2 = slutsatser["kallast"]
         slutsats3 = slutsatser["blotast"]
         temperatur_html, nederbord_html = skapa_diagram(manader)
-    except (requests.exceptions.RequestException, ValueError): 
-        return render_template("dashboard.html", error="Väderdata kunde inte hämtas."), 503
+    except (requests.exceptions.RequestException, ValueError):
+        return render_template(
+            "dashboard.html", error="Väderdata kunde inte hämtas."
+        ), 503
 
-    
     return render_template(
-            "dashboard.html",
-            temperatur_html=temperatur_html,
-            nederbord_html=nederbord_html,
-            slutsats1=slutsats1,
-            slutsats2=slutsats2,
-            slutsats3=slutsats3,    
-        )
+        "dashboard.html",
+        temperatur_html=temperatur_html,
+        nederbord_html=nederbord_html,
+        slutsats1=slutsats1,
+        slutsats2=slutsats2,
+        slutsats3=slutsats3,
+    )
 
 
 if __name__ == "__main__":
