@@ -50,6 +50,7 @@ def test_sammanfatta():
     assert resultat["blotast"] == 12
 
 
+# Testar att API anropet hanterar http fel korrekt som den ska
 def test_api_httpfel():
     with patch("application.api.requests.get") as mock_get:
         mock_response = Mock()
@@ -59,7 +60,7 @@ def test_api_httpfel():
         with pytest.raises(requests.exceptions.HTTPError):
             hamta_vader()
 
-
+# Testar att api anrop funktionen ger ValueError när datan är tom.
 def test_api_tomt_svar():
     with patch("application.api.requests.get") as mock_get:
         mock_response = Mock()
@@ -69,7 +70,7 @@ def test_api_tomt_svar():
         with pytest.raises(ValueError):
             hamta_vader()
 
-
+# Testar att dashboarden visar fel och ger statuskod 503 vid timeout.
 def test_dashboard_timeout():
     with patch("application.app.hamta_vader", side_effect=requests.exceptions.Timeout):
         client = app.test_client()
