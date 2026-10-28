@@ -8,15 +8,18 @@ from application.charts import skapa_diagram
 # Skapar flask appen och visar vart templates finns
 app = Flask(__name__, template_folder="templates")
 
+
 # Visar start sidan för vår app
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
 # Visar sidan med info om projektet
 @app.route("/about")
 def about():
     return render_template("about.html")
+
 
 # Hämtar och analyserar data som visas för användaren på denna sida
 @app.route("/dashboard")
@@ -50,6 +53,7 @@ def dashboard():
         slutsats2=slutsats2,
         slutsats3=slutsats3,
     )
+
 
 # Startar Flask om filen körs direkt
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 import plotly.express as px
 
+
 # Skapar två ineraktiva plotly diagram som visar nederböd och temperatur per månad
 # En linje diagram och en stapeldiagram som vi sist gör om till html
 def skapa_diagram(manader):
