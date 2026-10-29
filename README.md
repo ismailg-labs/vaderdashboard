@@ -37,6 +37,8 @@ source venv/bin/activate
 
 Installera sedan beroenden:
 
+Filen requirements-dev.txt installerar även allt från requirements.txt så man behöver köra bara ett installationskommando
+
 ```bash
 python -m pip install -r requirements-dev.txt
 ```
@@ -47,7 +49,7 @@ python -m pip install -r requirements-dev.txt
 python -m flask --app application.app run
 ```
 
-Öppna http://127.0.0.1:5000 i webbläsaren.
+Öppna http://127.0.0.1:5000 i webbläsaren. Klicka sedan på **Dashboard** i navigeringsmenyn för att se statestiken och diagrammen.
 
 ## Tester och Ruff
 
