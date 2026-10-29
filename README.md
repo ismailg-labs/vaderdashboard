@@ -12,6 +12,39 @@ Vår app besvarar tre frågor:
 - Vilken månad var kallast?
 - Vilken månad hade mest nederbörd?
 
+## Projektstruktur
+Vår project är uppdelad i följande filer och mappar (se nedan):
+
+```text
+vaderdashboard/
+├── application/
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── dashboard.html
+│   │   └── about.html
+│   ├── __init__.py
+│   ├── app.py
+│   ├── api.py
+│   ├── analysis.py
+│   └── charts.py
+├── tests/
+│   └── test_project.py
+├── .gitignore
+├── requirements.txt
+├── requirements-dev.txt
+├── pyproject.toml
+└── README.md
+```
+
+## Liten förklaring gällande vad de viktigaste filerna och mapparna gör
+- `app.py` - Hanterar våra Flask routes och kopplar ihop modulerna med varandra.
+- `api.py` - Skickar själva api anropet och hämtar datan från Open-Meteo.
+- `analysis.py` - Bearbetar api datan med pandas.
+- `charts.py` - Skapar diagrammen med hjälp av Plotly.
+- `templates/` - Inehåller html mallarna.
+- `tests/` - Inehåller våra 6 tester.
+
 ## Installation
 
 Börja med att clone projektet och öppna projektmappen:
@@ -66,7 +99,7 @@ python -m ruff check .
 python -m ruff format --check .
 ```
 
-** För Mac:** Använd `python3` istället för `python` i kommandona.
+**För Mac:** Använd `python3` istället för `python` i kommandona.
 
 ## API och källa
 
